@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby 
 
-puts 'hello world'
+require "./lib/shelter_pets.rb"
+
+ShelterPets::CLI.new.call
