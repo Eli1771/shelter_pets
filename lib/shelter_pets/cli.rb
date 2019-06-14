@@ -1,3 +1,5 @@
+###TODO fix regex for zip-code validation
+
 class ShelterPets::CLI 
   attr_accessor :zip, :dogs
 
@@ -17,21 +19,21 @@ class ShelterPets::CLI
   end 
   def menu 
     puts "Thanks! Here are the top 3 dogs in your area:"
-    
     @dogs = ShelterPets::Dog.top_three
     @dogs.each_with_index do |dog, index|
       puts "#{index + 1}. #{dog.name} - #{dog.age} #{dog.sex} - #{dog.species}"
     end 
-  
+    puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
+    
     input = gets.strip 
     if input.to_i > 0 
-      dog = @dogs[input.to_i + 1]
+      dog = @dogs[input.to_i - 1]
       dog.additional_info
-    elsif input == "exit" 
+    elsif input == "finished" 
       goodbye
     else 
       puts "Sorry, I didn't understand that."
-      puts "You can type the number that corresponds to any dog to find out more about him/her, or type exit"
+      puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
     end
   end 
   def goodbye
