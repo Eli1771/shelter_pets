@@ -6,10 +6,9 @@ class ShelterPets::Scraper
   end
   
   def dogs_by_zip 
-    browser = Watir::Browser.new 
-    browser.goto("https://theshelterpetproject.org/pet-search/?zip=89120&radius=25&species=dog&resultPage=1")
-    doc = Nokogiri::HTML.parse(browser.html)
-    puts doc
+    doc = Nokogiri::HTML(open("https://adoptapet.com/dog-adoption/search/50/miles/89074"))
+    doc
+    binding.pry
   end 
   
 

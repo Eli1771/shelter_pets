@@ -1,7 +1,6 @@
 require "pry"
 require "nokogiri"
 require "open-uri"
-require "watir"
 
 require "./lib/shelter_pets/version"
 require "./lib/shelter_pets/cli"
