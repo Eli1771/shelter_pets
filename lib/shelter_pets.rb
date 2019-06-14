@@ -1,4 +1,4 @@
-#require "pry"
+require "pry"
 require "nokogiri"
 
 require "./lib/shelter_pets/version"
