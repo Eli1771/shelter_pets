@@ -1,12 +1,9 @@
 ###TODO fix regex for zip-code validation
 ###lowercase all inputs 
 class ShelterPets::CLI 
-  attr_accessor :dogs
-  
-  @@zip = ''
+  attr_accessor :dogs, :zip
 
   def call 
-    ShelterPets::Scraper.new.html
     welcome 
     menu
   end 
@@ -17,7 +14,8 @@ class ShelterPets::CLI
       puts "To find available dogs near you, please enter your five-digit zip code:"
       zip = gets.strip
     end
-    @@zip = zip
+    @zip = zip
+    ShelterPets::Scraper.new(@zip).dogs_by_zip
   end 
   
   def menu 
@@ -45,9 +43,5 @@ class ShelterPets::CLI
   
   def goodbye
     puts "Thank you! Come back tomorrow to see who's still available!"
-  end 
-  
-  def self.zip 
-    @@zip 
   end 
 end 

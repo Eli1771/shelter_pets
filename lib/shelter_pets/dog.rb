@@ -1,5 +1,3 @@
-
-
 class ShelterPets::Dog 
   attr_accessor :name, :age, :sex, :species, :url 
   
