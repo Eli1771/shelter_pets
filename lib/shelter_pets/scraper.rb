@@ -6,8 +6,10 @@ class ShelterPets::Scraper
   end
   
   def dogs_by_zip 
-    doc = Nokogiri::HTML(open("https://adoptapet.com/dog-adoption/search/50/miles/89074"))
-    doc
+    browser = Watir::Browser.new :chrome 
+    browser.goto "https://www.petfinder.com/search/dogs-for-adoption/us/nv/89120/"
+    sleep 10 
+    doc = Nokogiri::HTML(browser.html)
     binding.pry
   end 
   
