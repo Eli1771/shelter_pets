@@ -26,3 +26,6 @@ end
 ShelterPets::Dog.new({:name => "Boomer", :age => "Puppy", :sex => "male", :url => ""})
 ShelterPets::Dog.new({:name => "Lilly", :age => "Puppy", :sex => "female", :url => ""})
 ShelterPets::Dog.new({:name => "Rex", :age => "Adult", :sex => "male", :url => ""})
+
+
+

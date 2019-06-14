@@ -1,9 +1,10 @@
 ###TODO fix regex for zip-code validation
-
+###lowercase all inputs 
 class ShelterPets::CLI 
   attr_accessor :zip, :dogs
 
   def call 
+    ShelterPets::Scraper.new.html
     welcome 
     menu
   end 
@@ -17,6 +18,7 @@ class ShelterPets::CLI
     end
     @zip = zip
   end 
+  
   def menu 
     puts "Thanks! Here are the top 3 dogs in your area:"
     @dogs = ShelterPets::Dog.top_three
@@ -25,17 +27,21 @@ class ShelterPets::CLI
     end 
     puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
     
-    input = gets.strip 
-    if input.to_i > 0 
-      dog = @dogs[input.to_i - 1]
-      dog.additional_info
-    elsif input == "finished" 
-      goodbye
-    else 
-      puts "Sorry, I didn't understand that."
-      puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
-    end
+    input = nil 
+    while input != "finished"
+      input = gets.strip 
+      if input.to_i > 0 
+        dog = @dogs[input.to_i - 1]
+        dog.additional_info
+      elsif input == "finished" 
+        goodbye
+      else 
+        puts "Sorry, I didn't understand that."
+        puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
+      end
+    end 
   end 
+  
   def goodbye
     puts "Thank you! Come back tomorrow to see who's still available!"
   end 
