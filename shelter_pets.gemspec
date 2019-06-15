@@ -41,6 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry"
 
   spec.add_dependency "nokogiri"
-  spec.add_dependency "watir-webdriver"
+  spec.add_dependency "watir", "~> 6.0"
+  spec.add_dependency "headless"
 end
 
