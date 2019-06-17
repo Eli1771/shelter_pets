@@ -1,5 +1,6 @@
 ###to do: add a 'new location' method
 ###lowercase all inputs
+###error handle invalid zip codes
 class ShelterPets::CLI
   attr_accessor :dogs, :zip
 

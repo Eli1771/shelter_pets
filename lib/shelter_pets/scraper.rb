@@ -7,7 +7,7 @@ class ShelterPets::Scraper
 
   def dogs_by_zip
     browser = Watir::Browser.new :chrome, headless: true
-    browser.goto "https://theshelterpetproject.org/pet-search/?zip=89120&radius=25&species=dog&resultPage=1"
+    browser.goto "https://theshelterpetproject.org/pet-search/?zip=#{@zip}&radius=25&species=dog&resultPage=1"
     sleep 2
     doc = Nokogiri::HTML(browser.html)
     dogs = doc.css('div.search__pet-basic-details')
