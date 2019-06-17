@@ -10,7 +10,7 @@ class ShelterPets::CLI
   def welcome
     puts "Welcome to Shelter Pets!"
     zip = ""
-    until zip.match(/\d{5}/)
+    until zip.match(/^[0-9]{5}$/)
       puts "To find available dogs near you, please enter your five-digit zip code:"
       zip = gets.strip
     end
