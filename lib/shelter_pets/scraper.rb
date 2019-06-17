@@ -12,7 +12,8 @@ class ShelterPets::Scraper
     doc = Nokogiri::HTML(browser.html)
     dogs = doc.css('li.search__pet').first
     dogs.each do |dog|
-      dog = Dog.new 
+      dog = Dog.new
+
     end
   end
 
