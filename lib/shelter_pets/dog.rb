@@ -10,8 +10,8 @@ class ShelterPets::Dog
     @@all << self
   end
 
-  def self.top_three
-    @@all[0,3]
+  def self.top_ten
+    @@all[0,10]
   end
 
   def additional_info

@@ -19,8 +19,8 @@ class ShelterPets::CLI
   end
 
   def menu
-    puts "Thanks! Here are the top 3 dogs in your area:"
-    @dogs = ShelterPets::Dog.top_three
+    puts "Thanks! Here are the top 10 dogs in your area:"
+    @dogs = ShelterPets::Dog.top_ten
     @dogs.each_with_index do |dog, index|
       puts "#{index + 1}. #{dog.name} - #{dog.age} #{dog.sex} - #{dog.breed}"
     end
