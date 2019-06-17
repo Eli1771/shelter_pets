@@ -1,4 +1,4 @@
-###TODO fix regex for zip-code validation
+###to do: add a 'new location' method
 ###lowercase all inputs
 class ShelterPets::CLI
   attr_accessor :dogs, :zip
@@ -19,11 +19,13 @@ class ShelterPets::CLI
   end
 
   def menu
+    puts ""
     puts "Thanks! Here are the top 10 dogs in your area:"
     @dogs = ShelterPets::Dog.top_ten
     @dogs.each_with_index do |dog, index|
       puts "#{index + 1}. #{dog.name} - #{dog.age} #{dog.sex} - #{dog.breed}"
     end
+    puts ""
     puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
 
     input = nil
@@ -35,6 +37,7 @@ class ShelterPets::CLI
       elsif input == "finished"
         goodbye
       else
+        puts ""
         puts "Sorry, I didn't understand that."
         puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
       end
@@ -42,6 +45,7 @@ class ShelterPets::CLI
   end
 
   def goodbye
+    puts ""
     puts "Thank you! Come back tomorrow to see who's still available!"
   end
 end
