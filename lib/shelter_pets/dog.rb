@@ -10,6 +10,12 @@ class ShelterPets::Dog
     @@all << self
   end
 
+  def self.all
+    @@all
+  end
+  def self.clear
+    @@all.clear
+  end 
   def self.top_ten
     @@all[0,10]
   end
@@ -19,6 +25,7 @@ class ShelterPets::Dog
     puts "Bio: She's a good girl!"
     puts "Contact: 555-5555"
   end
+
 end
 
 #ShelterPets::Dog.new({:name => "Boomer", :age => "Puppy", :sex => "male", :url => ""})

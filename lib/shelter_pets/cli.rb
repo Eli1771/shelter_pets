@@ -1,4 +1,4 @@
-###to do: add a 'new location' method
+###to do: fix endless loop in finished
 ###lowercase all inputs
 ###error handle invalid zip codes
 class ShelterPets::CLI
@@ -27,7 +27,7 @@ class ShelterPets::CLI
       puts "#{index + 1}. #{dog.name} - #{dog.age} #{dog.sex} - #{dog.breed}"
     end
     puts ""
-    puts "You can type the number that corresponds to any dog to find out more about him/her, or type finished"
+    puts "You can type the number that corresponds to any dog to find out more about him/her, or you can type 'new location' to search a new area, or type finished"
 
     input = nil
     while input != "finished"
@@ -35,6 +35,11 @@ class ShelterPets::CLI
       if input.to_i > 0
         dog = @dogs[input.to_i - 1]
         dog.additional_info
+      elsif input == "new location"
+        puts ""
+        puts "Okay! Let's start again:"
+        ShelterPets::Dog.clear
+        self.call
       elsif input == "finished"
         goodbye
       else
