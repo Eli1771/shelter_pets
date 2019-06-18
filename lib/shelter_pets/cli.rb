@@ -42,6 +42,7 @@ class ShelterPets::CLI
         self.call
       elsif input == "finished"
         goodbye
+        break
       else
         puts ""
         puts "Sorry, I didn't understand that."

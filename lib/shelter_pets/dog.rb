@@ -1,5 +1,5 @@
 class ShelterPets::Dog
-  attr_accessor :name, :age, :sex, :breed, :location, :url
+  attr_accessor :name, :age, :sex, :breed, :location, :url, :pet_id
 
   @@all = []
 
@@ -15,7 +15,7 @@ class ShelterPets::Dog
   end
   def self.clear
     @@all.clear
-  end 
+  end
   def self.top_ten
     @@all[0,10]
   end
