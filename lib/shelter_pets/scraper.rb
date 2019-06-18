@@ -9,18 +9,18 @@ class ShelterPets::Scraper
 
   def dogs_by_zip
     browser = Watir::Browser.new :chrome, headless: true
-    browser.goto "https://theshelterpetproject.org/pet-search/?zip=#{@zip}&radius=25&species=dog&resultPage=1"
+    browser.goto "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
     sleep 2
     doc = Nokogiri::HTML(browser.html)
-    dogs = doc.css('div.search__pet-basic-details')
-    dog = dogs.first
-    dogs.each_with_index do |dog_info, index|
-      name = dog_info.css('span.search__pet-name').text
-      breed = dog_info.css('span.search__pet-breed').text
-      sex = dog_info.css('span.search__pet-meta').text.split(" ").first
-      age = dog_info.css('span.search__pet-meta').text.split(" ").last
-      pet_id = index
-      attributes = {name: name, breed: breed, sex: sex, age: age, pet_id: pet_id}
+    dogs = doc.css('div.petcard__content')
+    binding.pry
+    dogs.each do |dog_info|
+      name = dog_info.css('h4.pet-card__heading').text
+      sex = dog_info.css('span.pet-card__content--comma').first.text.strip
+      life_stage = dog_info.css('span.pet-card__content--comma')[1].text.strip
+      location = dog_info.css('span.pet-card__content--comma')[2].text.strip
+      url = dog_info.css('a.pet-card__link').attribute('href').value
+      attributes = {name: name, sex: sex, life_stage: life_stage, location: location, url: url}
       dog = ShelterPets::Dog.new(attributes)
     end
   end
