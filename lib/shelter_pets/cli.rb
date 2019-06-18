@@ -25,7 +25,7 @@ class ShelterPets::CLI
     puts "Thanks! Here are the top 10 dogs in your area:"
     @dogs = ShelterPets::Dog.top_ten
     @dogs.each_with_index do |dog, index|
-      puts "#{index + 1}. #{dog.name} - #{dog.age} #{dog.sex} - #{dog.breed}"
+      puts "#{index + 1}. #{dog.name} - #{dog.life_stage} #{dog.sex} - #{dog.location}"
     end
     puts ""
     puts "You can type the number that corresponds to any dog to find out more about him/her, or you can type 'new location' to search a new area, or type finished"

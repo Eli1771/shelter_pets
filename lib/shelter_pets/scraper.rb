@@ -13,12 +13,11 @@ class ShelterPets::Scraper
     sleep 2
     doc = Nokogiri::HTML(browser.html)
     dogs = doc.css('div.petcard__content')
-    binding.pry
     dogs.each do |dog_info|
       name = dog_info.css('h4.pet-card__heading').text
       sex = dog_info.css('span.pet-card__content--comma').first.text.strip
       life_stage = dog_info.css('span.pet-card__content--comma')[1].text.strip
-      location = dog_info.css('span.pet-card__content--comma')[2].text.strip
+      dog_info.css('span.pet-card__content--comma')[2].text.strip == 'Special Needs' ? location = dog_info.css('span.pet-card__content--comma')[3].text.strip : location = dog_info.css('span.pet-card__content--comma')[2].text.strip
       url = dog_info.css('a.pet-card__link').attribute('href').value
       attributes = {name: name, sex: sex, life_stage: life_stage, location: location, url: url}
       dog = ShelterPets::Dog.new(attributes)
