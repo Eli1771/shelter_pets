@@ -31,6 +31,12 @@ class ShelterPets::Scraper
     sleep 2
     doc = Nokogiri::HTML(browser.html)
     binding.pry
-    
+    #looking for size, color, breed, shelter, contact, bio, and traits
+    breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
+    color = doc.css('div.h4__heading, h4--light, h4--compact')[3].text.strip
+    size = doc.css('div.h4__heading, h4--light, h4--compact')[7].text.strip
+    traits = doc.css('div.myinfo__content div.myinfo__label span:nth-child(even)')
+    shelter = doc.css('section.js-contact-info div.formgroup__content-section a').first.text
+    contact = doc.css('section.js-contact-info div.formgroup__content-section a')[1].text
   end
 end

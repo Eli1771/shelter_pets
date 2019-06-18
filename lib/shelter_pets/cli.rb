@@ -55,6 +55,7 @@ class ShelterPets::CLI
   def additional_info(dog)
     puts "#{dog.name} is a(n) #{dog.color} #{dog.breed}. #{sex} will be #{dog.size}. #{sex} is #{dog.traits.each {|trait| puts trait}}."
     puts "Additional background: #{dog.bio}" if dog.bio
+    puts "#{dog.name} is cared for by #{dog.shelter} rescue. You can contact them for more information at #{dog.contact}!"
   end
 
   def goodbye

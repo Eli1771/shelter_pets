@@ -1,5 +1,5 @@
 class ShelterPets::Dog
-  attr_accessor :name, :life_stage, :age, :sex, :breed, :location, :url
+  attr_accessor :name, :life_stage, :age, :sex, :breed, :location, :url, :bio, :color, :size, :traits, :shelter, :contact
 
   @@all = []
 
