@@ -31,5 +31,6 @@ class ShelterPets::Scraper
     sleep 2
     doc = Nokogiri::HTML(browser.html)
     binding.pry
+    
   end
 end
