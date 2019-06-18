@@ -2,7 +2,7 @@
 ###lowercase all inputs
 ###error handle invalid zip codes
 class ShelterPets::CLI
-  attr_accessor :dogs, :zip
+  attr_accessor :dogs, :zip, :scraper
 
   def call
     welcome
@@ -16,7 +16,8 @@ class ShelterPets::CLI
       zip = gets.strip
     end
     @zip = zip
-    ShelterPets::Scraper.new(@zip).dogs_by_zip
+    @scraper = ShelterPets::Scraper.new(@zip)
+    @scraper.dogs_by_zip
   end
 
   def menu
@@ -34,7 +35,7 @@ class ShelterPets::CLI
       input = gets.strip
       if input.to_i > 0
         dog = @dogs[input.to_i - 1]
-        dog.additional_info
+        @scraper.dog_by_url(input.to_i - 1)
       elsif input == "new location"
         puts ""
         puts "Okay! Let's start again:"

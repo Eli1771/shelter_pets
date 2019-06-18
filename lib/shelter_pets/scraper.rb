@@ -26,7 +26,7 @@ class ShelterPets::Scraper
   end
 
   def dog_by_url(index)
-    dog = SheterPets::Dog.all[index]
+    dog = ShelterPets::Dog.all[index]
     browser = Watir::Browser.new :chrome, headless: true
     browser.goto "https://theshelterpetproject.org/pet-search/?zip=#{@zip}&radius=25&species=dog&resultPage=1"
     sleep 2

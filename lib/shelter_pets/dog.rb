@@ -20,12 +20,6 @@ class ShelterPets::Dog
     @@all[0,10]
   end
 
-  def additional_info
-    puts "Location: Helping Paws Rescue"
-    puts "Bio: She's a good girl!"
-    puts "Contact: 555-5555"
-  end
-
 end
 
 #ShelterPets::Dog.new({:name => "Boomer", :age => "Puppy", :sex => "male", :url => ""})
