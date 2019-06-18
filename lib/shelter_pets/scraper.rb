@@ -27,7 +27,7 @@ class ShelterPets::Scraper
   def dog_by_url(index)
     dog = ShelterPets::Dog.all[index]
     browser = Watir::Browser.new :chrome, headless: true
-    browser.goto "dog.url"
+    browser.goto dog.url
     sleep 2
     doc = Nokogiri::HTML(browser.html)
     binding.pry

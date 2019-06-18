@@ -29,7 +29,7 @@ class ShelterPets::CLI
     end
     puts ""
     puts "You can type the number that corresponds to any dog to find out more about him/her, or you can type 'new location' to search a new area, or type finished"
-    binding.pry
+
     input = nil
     while input != "finished"
       input = gets.strip
