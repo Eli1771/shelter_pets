@@ -35,9 +35,18 @@ class ShelterPets::Scraper
     dog.breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
     dog.color = doc.css('div.h4__heading, h4--light, h4--compact')[3].text.strip
     dog.size = doc.css('div.h4__heading, h4--light, h4--compact')[7].text.strip
-    dog.traits = doc.css('div.myinfo__content div.myinfo__label span:nth-child(even)')
     dog.shelter = doc.css('section.js-contact-info div.formgroup__content-section a').first.text
     dog.contact = doc.css('section.js-contact-info div.formgroup__content-section a')[1].text
     dog.bio = doc.css('div.mystory span').text
+
+    traits = doc.css('div.myinfo__content div.myinfo__label span:nth-child(even)')
+    s = ""
+    (traits.length - 1).times do
+      s += traits[0]
+      s += ", "
+      traits.shift()
+    end
+    s += "and #{traits[0].text}."
+
   end
 end
