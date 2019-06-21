@@ -10,7 +10,7 @@ class ShelterPets::Scraper
   def dogs_by_zip
     browser = Watir::Browser.new :chrome, headless: true
     browser.goto "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
-    sleep 2
+    sleep 1.5
     doc = Nokogiri::HTML(browser.html)
     dogs = doc.css('div.petcard__content')
     dogs.each do |dog_info|
@@ -28,7 +28,7 @@ class ShelterPets::Scraper
     dog = ShelterPets::Dog.all[index]
     browser = Watir::Browser.new :chrome, headless: true
     browser.goto dog.url
-    sleep 2
+    sleep 1.5
     doc = Nokogiri::HTML(browser.html)
     #looking for size, color, breed, shelter, contact, bio, and traits
     dog.breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
