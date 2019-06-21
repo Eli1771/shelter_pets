@@ -1,4 +1,3 @@
-###to do: fix endless loop in finished
 ###error handle invalid zip codes
 class ShelterPets::CLI
   attr_accessor :dogs, :zip, :scraper
@@ -36,7 +35,9 @@ class ShelterPets::CLI
         puts ""
         puts "Okay! Let's start again:"
         ShelterPets::Dog.clear
-        self.call
+        welcome
+        menu
+        break
       elsif input == "finished"
         goodbye
         break
