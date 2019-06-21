@@ -36,6 +36,7 @@ class ShelterPets::CLI
       if input.to_i > 0
         dog = @dogs[input.to_i - 1]
         @scraper.dog_by_url(input.to_i - 1)
+        additional_info(dog)
       elsif input == "new location"
         puts ""
         puts "Okay! Let's start again:"
@@ -53,9 +54,20 @@ class ShelterPets::CLI
   end
 
   def additional_info(dog)
-    puts "#{dog.name} is a(n) #{dog.color} #{dog.breed}. #{sex} will be #{dog.size}. #{sex} is #{dog.traits.each {|trait| puts trait}}."
+    dog.sex == "male" ? sex = "He" : sex = "She"
+    puts "#{dog.name} is a(n) #{dog.color} #{dog.breed}. #{sex} will be #{dog.size}. #{sex} is #{dog.traits}"
+    puts ""
     puts "Additional background: #{dog.bio}" if dog.bio
+    puts ""
     puts "#{dog.name} is cared for by #{dog.shelter} rescue. You can contact them for more information at #{dog.contact}!"
+    puts ""
+
+    puts "Here are the top 10 dogs in your area:"
+    @dogs.each_with_index do |dog, index|
+      puts "#{index + 1}. #{dog.name} - #{dog.life_stage} #{dog.sex} - #{dog.location}"
+    end
+    puts ""
+    puts "You can type the number that corresponds to any dog to find out more about him/her, or you can type 'new location' to search a new area, or type finished"
   end
 
   def goodbye

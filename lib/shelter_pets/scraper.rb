@@ -30,7 +30,6 @@ class ShelterPets::Scraper
     browser.goto dog.url
     sleep 2
     doc = Nokogiri::HTML(browser.html)
-    binding.pry
     #looking for size, color, breed, shelter, contact, bio, and traits
     dog.breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
     dog.color = doc.css('div.h4__heading, h4--light, h4--compact')[3].text.strip
@@ -47,6 +46,6 @@ class ShelterPets::Scraper
       traits.shift()
     end
     s += "and #{traits[0].text}."
-
+    dog.traits = s
   end
 end
