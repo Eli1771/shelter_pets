@@ -15,11 +15,6 @@ class ShelterPets::CLI
     end
     @zip = zip
     @scraper = ShelterPets::Scraper.new(@zip)
-    if @scraper.check_zip
-      @scraper.dogs_by_zip
-    else
-      welcome
-    end
   end
 
   def menu
@@ -62,7 +57,7 @@ class ShelterPets::CLI
     puts ""
     puts "#{dog.name} is cared for by #{dog.shelter} rescue. You can contact them for more information at #{dog.contact}!"
     puts ""
-    puts "Press enter/return when you're finished!"
+    puts "Press enter/return when you're finished"
     gets.strip
     puts "Here are the top ten dogs in your area:"
     top_ten
