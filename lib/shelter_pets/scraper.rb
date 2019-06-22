@@ -1,5 +1,5 @@
 ##Abstract browser out to be used by multiple method
-
+##error handle shelter scraper for pets with private owners
 class ShelterPets::Scraper
   attr_accessor :zip, :all_dogs, :dog
 
@@ -7,11 +7,16 @@ class ShelterPets::Scraper
     @zip = zip
   end
 
-  def dogs_by_zip
+  def get_doc(url)
     browser = Watir::Browser.new :chrome, headless: true
-    browser.goto "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
+    browser.goto url
     sleep 1.5
     doc = Nokogiri::HTML(browser.html)
+  end
+
+  def dogs_by_zip
+    url = "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
+    doc = get_doc(url)
     dogs = doc.css('div.petcard__content')
     dogs.each do |dog_info|
       name = dog_info.css('h4.pet-card__heading').text
@@ -24,12 +29,11 @@ class ShelterPets::Scraper
     end
   end
 
+
+
   def dog_by_url(index)
     dog = ShelterPets::Dog.all[index]
-    browser = Watir::Browser.new :chrome, headless: true
-    browser.goto dog.url
-    sleep 1.5
-    doc = Nokogiri::HTML(browser.html)
+    doc = get_doc(dog.url)
     #looking for size, color, breed, shelter, contact, bio, and traits
     dog.breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
     dog.color = doc.css('div.h4__heading, h4--light, h4--compact')[3].text.strip

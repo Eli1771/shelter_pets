@@ -15,6 +15,11 @@ class ShelterPets::CLI
     end
     @zip = zip
     @scraper = ShelterPets::Scraper.new(@zip)
+    #if @scraper.check_zip
+    #  @scraper.dogs_by_zip
+    #else
+    #  welcome
+    #end
     @scraper.dogs_by_zip
   end
 
