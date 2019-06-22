@@ -14,6 +14,13 @@ class ShelterPets::Scraper
     doc = Nokogiri::HTML(browser.html)
   end
 
+  def check_zip
+    url = "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
+    doc = get_doc(url)
+    headers = doc.css('h2')
+    headers.any? {|h| h.text == 'Featured Pets'} ? false : true
+  end
+
   def dogs_by_zip
     url = "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
     doc = get_doc(url)
@@ -28,8 +35,6 @@ class ShelterPets::Scraper
       dog = ShelterPets::Dog.new(attributes)
     end
   end
-
-
 
   def dog_by_url(index)
     dog = ShelterPets::Dog.all[index]
