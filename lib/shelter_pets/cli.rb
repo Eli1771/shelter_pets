@@ -16,7 +16,7 @@ class ShelterPets::CLI
     @zip = zip
     @scraper = ShelterPets::Scraper.new(@zip)
     @scraper.dogs_by_zip
-    #put zip code error handling here
+    #put zip code error handling
   end
 
   def menu
