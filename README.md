@@ -1,8 +1,6 @@
 # ShelterPets
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/shelter_pets`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Shelter Pets! This gem uses www.adoptapet.com to bring you information about local Dogs living in shelters near you. Provide your zip code to the CLI and get a list of the first 20 dogs on the page. From there you can change your location or get additional information on any of the dogs on the list, including ways to contact the shelter if you're interested in adopting someone. 
 
 ## Installation
 
