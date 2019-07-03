@@ -28,7 +28,7 @@ class ShelterPets::CLI
     input = nil
     while input != "finished"
       input = gets.strip.downcase
-      if input.to_i > 0
+      if [1..10].include?(input.to_s)
         dog = @dogs[input.to_i - 1]
         @scraper.dog_by_url(input.to_i - 1)
         additional_info(dog)
