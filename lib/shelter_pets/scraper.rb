@@ -1,7 +1,7 @@
 ##Abstract browser out to be used by multiple method
 ##error handle shelter scraper for pets with private owners
 class ShelterPets::Scraper
-  # attr_accessor :zip, :all_dogs, :dog
+  attr_accessor :zip, :all_dogs, :dog
 
   def initialize(zip = '89120')
     @zip = zip
