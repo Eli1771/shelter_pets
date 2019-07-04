@@ -1,6 +1,6 @@
 ###error handle invalid zip codes
 class ShelterPets::CLI
-  attr_accessor :dogs, :zip, :scraper
+  attr_accessor :zip
 
   def call
     welcome

@@ -1,7 +1,3 @@
-##Abstract browser out to be used by multiple method
-##error handle shelter scraper for pets with private owners
-
-##Error with zip 12496 then select scooby
 class ShelterPets::Scraper
   attr_accessor :zip, :all_dogs, :dog
 
@@ -45,7 +41,7 @@ class ShelterPets::Scraper
     else
       dog.shelter = doc.css('section.js-contact-info div.formgroup__content-section a').first.text
       dog.contact = doc.css('section.js-contact-info div.formgroup__content-section a')[1].text
-    end 
+    end
     dog.bio = doc.css('div.mystory span').text
 
     traits = doc.css('div.myinfo__content div.myinfo__label span:nth-child(even)')
