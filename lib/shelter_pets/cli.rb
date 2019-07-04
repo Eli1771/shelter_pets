@@ -28,7 +28,7 @@ class ShelterPets::CLI
     input = nil
     while input != "finished"
       input = gets.strip.downcase
-      if [1..10].include?(input.to_s)
+      if input.match(/^[1-9]{1}$|10/)
         dog = @dogs[input.to_i - 1]
         @scraper.dog_by_url(input.to_i - 1)
         additional_info(dog)
@@ -57,7 +57,11 @@ class ShelterPets::CLI
     puts ""
     puts "Additional background: #{dog.bio}" if dog.bio
     puts ""
-    puts "#{dog.name} is cared for by #{dog.shelter} rescue. You can contact them for more information at #{dog.contact}!"
+    if dog.shelter == "Private owner"
+      puts "#{dog.name} is cared for by a private owner. To find out more, go to #{dog.contact} and click 'Apply to Adopt'!"
+    else
+      puts "#{dog.name} is cared for by #{dog.shelter} rescue. You can contact them for more information at #{dog.contact}!"
+    end
     puts ""
     puts "Press enter/return when you're finished"
     gets.strip

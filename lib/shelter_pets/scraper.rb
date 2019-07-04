@@ -1,5 +1,7 @@
 ##Abstract browser out to be used by multiple method
 ##error handle shelter scraper for pets with private owners
+
+##Error with zip 12496 then select scooby
 class ShelterPets::Scraper
   attr_accessor :zip, :all_dogs, :dog
 
@@ -13,13 +15,6 @@ class ShelterPets::Scraper
     sleep 1.5
     doc = Nokogiri::HTML(browser.html)
   end
-
-  #def check_zip
-  #  url = "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
-  #  doc = get_doc(url)
-  #  headers = doc.css('h2')
-  #  headers.any? {|h| h.text == 'Featured Pets'} ? false : true
-  #end
 
   def dogs_by_zip
     url = "https://www.adoptapet.com/dog-adoption/search/50/miles/#{zip}"
@@ -43,8 +38,14 @@ class ShelterPets::Scraper
     dog.breed = doc.css('div.h4__heading, h4--light, h4--compact')[1].text.strip
     dog.color = doc.css('div.h4__heading, h4--light, h4--compact')[3].text.strip
     dog.size = doc.css('div.h4__heading, h4--light, h4--compact')[7].text.strip
-    dog.shelter = doc.css('section.js-contact-info div.formgroup__content-section a').first.text
-    dog.contact = doc.css('section.js-contact-info div.formgroup__content-section a')[1].text
+    shelter_info = doc.css('h5.shelterinfo__label').text
+    if shelter_info.match(/Private/)
+      dog.shelter = 'Private owner'
+      dog.contact = dog.url
+    else
+      dog.shelter = doc.css('section.js-contact-info div.formgroup__content-section a').first.text
+      dog.contact = doc.css('section.js-contact-info div.formgroup__content-section a')[1].text
+    end 
     dog.bio = doc.css('div.mystory span').text
 
     traits = doc.css('div.myinfo__content div.myinfo__label span:nth-child(even)')
